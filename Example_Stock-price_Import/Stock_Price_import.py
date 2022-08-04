@@ -1,8 +1,9 @@
 import pandas as pd
 import pandas_datareader as web
 import numpy as np
-from matplotlib.pyplot import title
-import mplfinance as mpl 
+import matplotlib.pyplot as plt
+import mplfinance as mpl
+import math
 #import pprint
 
 symbol=input()
@@ -11,7 +12,7 @@ Stock_name=input()
 df = web.DataReader(symbol, data_source='yahoo',start='2022-01-14',end='2022-07-14')
 #Now Plotting the data
 
-print(df)
+# print(df)
 duration = df.shape[0]
 #print(df.iloc[0][1])
 
@@ -31,7 +32,15 @@ while (i < duration):
 print('% changes with respect to previous closing price --> ',delta_p[:10])
 print('\n% changes with respect to previous opening price --> ',delta_t[:10])
 
-mpl.plot(df, type="candle", mav =(7,14), title = f"{Stock_name}", style="yahoo", volume=True)
+# mx = max(deltaT)
+# mn = min(deltaT)
+# range = mx - mn
+# noi = math.sqrt(len(deltaT))
+# width_of_intervals = range/noi
+plt.hist(delta_t)
+plt.show()
+
+# mpl.plot(df, type="candle", mav =(7,14), title = f"{Stock_name}", style="yahoo", volume=True)
 
 
 
